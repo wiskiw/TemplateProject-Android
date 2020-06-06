@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TemplateProject</string>
+
+    <string name="network_messaging_response_parse_error">Unexpected server response, please try again later.</string>
+    <string name="network_messaging_http_error">Server communication error, please try again later.</string>
+    <string name="network_messaging_network_error">An error has occurred, please check you internet connection.</string>
+    <string name="network_messaging_unhandled_error">An error has occurred, please try again later.</string>
 </resources>

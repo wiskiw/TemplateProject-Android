@@ -27,6 +27,8 @@ android {
 
         proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
         proguardFile 'proguard-rules.pro'
+
+        buildConfigField "Boolean", "ENABLE_PROXY_LOGGING", "false"
     }
 
     buildTypes {
@@ -42,6 +44,8 @@ android {
             minifyEnabled false
             shrinkResources false
             debuggable true
+
+            buildConfigField "Boolean", "ENABLE_PROXY_LOGGING", "true"
         }
     }
 
