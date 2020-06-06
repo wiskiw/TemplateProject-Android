@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    signingConfigs {
+        publish {
+            storePassword 'storePassword'
+            keyAlias = 'keyAlias'
+            keyPassword 'keyPassword'
+            storeFile file('../keys/publish-key.jks')
+        }
+    }
+
+    defaultConfig {
+        applicationId "by.yablonski.templateproject"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.publish
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
+        proguardFile 'proguard-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+        }
+
+        debug {
+            versionNameSuffix '-DEBUG'
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+        }
+    }
+
+}
+
+dependencies {
+    // External libraries
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Android Core
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // Testing
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
