@@ -29,3 +29,5 @@
   public static *** w(...);
   public static *** e(...);
 }
+
+-keep public class by.yablonski.stub.*
