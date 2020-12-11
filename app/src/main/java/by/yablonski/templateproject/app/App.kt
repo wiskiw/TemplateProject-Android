@@ -37,7 +37,7 @@ class App : Application() {
         setupKoin()
         configureLoggers()
 
-        jsonStubProxy = JsonStubProxy()
+        jsonStubProxy = JsonStubProxy(this)
     }
 
     private fun setupKoin() {

@@ -1,10 +1,10 @@
-package by.yablonski.stub
+package by.yablonski.stub.environment
 
 /**
  * Stub environment singleton class.
  * Can be used for storing or modifying some data
  */
-object Stub {
+class MainStubEnvironment {
 
     private var numberStore = 0
 

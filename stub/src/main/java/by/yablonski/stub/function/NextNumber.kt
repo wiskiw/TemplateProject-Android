@@ -1,23 +1,23 @@
 package by.yablonski.stub.function
 
-import by.yablonski.stub.Stub
-import by.yablonski.stub.StubFunction
-import by.yablonski.stub.Utils
+import by.yablonski.stub.StubFunctionResult
+import by.yablonski.stub.environment.MainStubEnvironment
 import org.json.JSONObject
 
 /**
  * Example for stub function implementation
  */
-class NextNumber : StubFunction() {
+internal class NextNumber(
+    private val mainStubEnvironment: MainStubEnvironment
+) : StubFunction {
 
-    override fun get(requestHeaders: Map<String, String>, requestBody: JSONObject): ByteArray {
-        val body = JSONObject()
-        body.put("data", Stub.getIncreaseNumber())
+    override fun invoke(headers: Map<String, String>, body: JSONObject): StubFunctionResult {
+        val responseBody = JSONObject()
+            .apply {
+                put("data", mainStubEnvironment.getIncreaseNumber())
+            }
 
-        return Utils.createJsonStubResponse(
-            code = HttpCode.OK,
-            body = body
-        )
+        return StubFunctionResult(body = responseBody)
     }
 
 }

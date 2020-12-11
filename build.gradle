@@ -2,6 +2,9 @@
 
 buildscript {
     apply from: "./versions.gradle"
+    ext {
+        versions.kotlin = '1.4.21'
+    }
 
     repositories {
         google()
@@ -21,7 +24,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven { url 'https://jitpack.io' }
     }
 }
 

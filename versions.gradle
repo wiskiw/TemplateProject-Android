@@ -5,5 +5,10 @@ versions.kotlin = "1.3.72"
 versions.kotlin_coroutines = "1.3.0"
 versions.volley = "1.1.1"
 versions.koin = "2.1.6"
+versions.corektx = "1.3.1"
+versions.gson = "2.8.6"
+
+versions.androidxjunit = "1.1.2"
+versions.androidxtest = "1.3.0"
 
 ext.versions = versions

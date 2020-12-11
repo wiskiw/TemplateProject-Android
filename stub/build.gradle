@@ -1,11 +1,45 @@
-apply plugin: 'java-library'
-apply plugin: 'kotlin'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
 
-    implementation 'org.json:json:20200518'
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+        }
+    }
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // Android Core
+    implementation "androidx.core:core-ktx:$versions.corektx"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+
+    // JSON
+    implementation "com.google.code.gson:gson:$versions.gson"
+
+    // Testing
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidxjunit"
+    androidTestImplementation "androidx.test:runner:$versions.androidxtest"
+    androidTestImplementation "androidx.test:rules:$versions.androidxtest"
+}
