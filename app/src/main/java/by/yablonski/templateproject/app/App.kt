@@ -1,6 +1,7 @@
 package by.yablonski.templateproject.app
 
 import android.app.Application
+import by.yablonski.templateproject.app.di.AppModule
 import by.yablonski.templateproject.app.logging.LoggerAggregator
 import by.yablonski.templateproject.app.logging.SLF4JLoggerAdapter
 import by.yablonski.templateproject.app.logging.logger.FileLogger
@@ -8,6 +9,8 @@ import by.yablonski.templateproject.app.logging.logger.LogcatLogger
 import by.yablonski.templateproject.networking.proxy.Proxy
 import by.yablonski.templateproject.networking.proxy.jsonstub.JsonStubProxy
 import org.json.JSONObject
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.IOException
@@ -31,9 +34,21 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        setupKoin()
         configureLoggers()
 
         jsonStubProxy = JsonStubProxy()
+    }
+
+    private fun setupKoin() {
+        startKoin {
+            androidContext(this@App)
+            modules(
+                listOf(
+                    AppModule.modules
+                )
+            )
+        }
     }
 
     private fun configureLoggers() {
